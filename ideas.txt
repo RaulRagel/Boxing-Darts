@@ -1,0 +1,32 @@
+------COSAS QUE FALTAN---------
+
+Se podría añadir un dado para jugar en la página sin necesidad de dardos
+
+Opción de registrar jugadores y poder seleccionarlo desde opciones
+
+Alert de jugadores sin confirmar
+
+
+
+-------------IDEAS----------
+
+Clases:
+Bruto: +1 daño
+Vampiro: cuando hace daño se cura 1
+Mago: si hace daño a uno afecta también al otro
+Bruja: si se cura, hace 1 de daño a los demás
+Berserker: si está con vida roja, hace x2 daño
+Sacerdote: si está con vida roja,
+se cura +3
+
+Especiales: empiezan con más o menos vida, tienen más o menos puntos vulnerables, pueden hacer daño en más zonas, pueden curarse con más de una zona...
+
+Otras:
+- si en su turno hizo 2 de daño, obtiene un escudo que le protege el siguiente ataque
+- si ha matado a alguien, restaura 5 de salud
+
+Música
+
+Animaciones de cuando recibes daño o sangre
+
+Fueguito de en racha

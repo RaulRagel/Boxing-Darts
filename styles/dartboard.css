@@ -1,0 +1,130 @@
+
+
+.board{
+    position: relative;
+
+    background-color: black;
+    border: 30px solid black;
+    
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: rotate(-9deg);
+
+
+}
+
+.sections-container{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+}
+
+.section{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.section span{
+    
+    color: white;
+    position: absolute;
+    top: -20px;
+    padding-left: 17%;
+
+    transform-origin: 150%;
+    transform: rotate(9deg);
+
+    font-size: 30px;
+}
+
+.border-container{
+    display: flex;
+    justify-content: center;
+    
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+
+}
+
+.border{
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: gray;
+}
+
+.triples{
+    position: absolute;
+    border-radius: inherit;
+
+    background: radial-gradient(circle, transparent 62%, rgb(187, 187, 187) 62%);
+
+    height: 65%;
+    width: 65%;
+}
+
+.doubles{
+    position: absolute;
+    border-radius: inherit;
+
+    background: radial-gradient(circle, transparent 65%, rgb(187, 187, 187) 65%);
+
+    height: 100%;
+    width: 100%;
+}
+
+.center{
+    position: absolute;
+    border-radius: inherit;
+
+    /* background: radial-gradient(circle, rgb(187, 187, 187) 15%, rgba(0,0,0,1) 15%, rgb(187, 187, 187) 15%); */
+    background-color: rgb(187, 187, 187);
+    box-shadow: 0 0 0 2px gray, 0 0 0 10px rgb(187, 187, 187);
+
+
+    height: 8%;
+    width: 8%;
+
+    z-index: 1;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .board{
+        width: 200px;
+        height: 200px;
+    }
+    .section span{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 445px) {
+    .board{
+        width: 100px;
+        height: 100px;
+        border: 20px solid black;
+    }
+    .section span{
+        font-size: 15px;
+    }
+    .section span{
+    
+        top: -15px;
+    }
+}

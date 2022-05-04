@@ -1,0 +1,101 @@
+.character-container{
+
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+}
+
+
+.character{
+    
+    /*necesario para que el absolute de dentro funcione*/
+    border-radius: 10px;
+    position: relative;
+
+    width: 100%;
+    height: 90%;
+    margin-bottom: 5px;
+    
+    /*esto sirve si la imagen es un elemento*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /*imagenes grandes con esto se soluciona*/
+    overflow: hidden;
+}
+
+.player-name{
+
+    padding: 4px;
+    position: absolute;
+    top: 80%;
+
+    border-radius: 6px;
+    background-color: var(--gray);
+    border: 4px solid var(--black);
+
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+}
+
+.character img{
+    width: 100%;
+}
+
+@media only screen and (max-width: 375px) {
+    .player-name{
+        top: 85%;
+        font-size: 20px;
+    }
+}
+
+.final-screen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    z-index: 50;
+    
+    top: 0;
+
+    text-align: center;
+}
+
+.character h2{
+    
+    margin-top: 50%;
+    font-size: xx-large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.death{
+    background-color: rgba(255, 0, 0, 0.349);
+}
+
+.win{
+    background-image: url("./../images/bgs/confetti.gif");
+    background-size: cover;
+}
+
+.death h2{
+    border-top: 4px solid rgb(122, 0, 0);
+    border-bottom: 4px solid rgb(122, 0, 0);
+    color: rgb(122, 0, 0);
+}
+
+.win h2{
+    border-top: 4px solid rgb(5, 143, 0);
+    border-bottom: 4px solid rgb(5, 143, 0);
+    color: rgb(22, 190, 0);
+}
+
+/*
+Center vertical (para los botones):
+
+align-content: center;
+*/

@@ -1,0 +1,274 @@
+.card-container{
+    
+    width: 320px;
+    height: 360px;
+
+    min-width: 280px;
+
+    padding-left: 7px;
+    margin: 10px;
+    margin-bottom: 20px;
+
+    background-color: rgb(0, 0, 0);
+    box-shadow: rgb(105, 105, 105) 2px 2px 25px 7px;
+    border-radius: 10px;
+    /* border: 4px solid var(--red); */
+    border: 4px solid;
+
+    display: flex;
+    /*justify-content: center;*/ /*para imagenes más estrechas*/
+}
+
+.card-content{
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+
+    border-radius: 5px;
+
+    /* box-shadow: inset -1px -10px 15px 25px rgba(94, 255, 0, 0.15); */
+
+    width: 78%;
+    margin-right: 2%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 790px) {
+    .card-container{
+        width: 290px;
+        height: 350px;
+        
+        min-width: 290px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .card-container{
+        width: 260px;
+        height: 340px;
+        
+        min-width: 270px;
+    }
+}
+
+
+@media only screen and (max-width: 390px) {
+    .card-container{
+        width: 250px;
+        height: 320px;
+
+        min-width: 250px;
+
+    }
+}
+
+@media only screen and (max-width: 355px) {
+    .card-container{
+        width: 230px;
+        height: 300px;
+
+        min-width: 210px;
+
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .card-container{
+        width: 210px;
+        height: 290px;
+
+        min-width: 210px;
+        margin-bottom: 30px;
+    }
+}
+
+/*PANEL DE CONTROL DE LAS CARTAS*/
+.control-panel{
+
+    border: 3px solid;
+    background-color: var(--gray);
+    border-radius: 5px;
+
+    padding-top: 6%;
+    margin-top: -2px;
+
+    width: 14%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    float: right;
+
+}
+
+/*BOTONES DE EDITAR, BORRAR Y CONFIRMAR*/
+.card-config{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card-config-btn{
+
+    background-color: transparent;
+    border: none;
+    margin-bottom: 10px;
+    /* justify-content: center; */
+
+    position: relative;
+}
+
+.card-config-btn span{
+    
+    position: absolute;
+    visibility: hidden;
+    
+    padding: 5px;
+    
+    right: 90%;
+    
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+
+}
+
+
+.card-config-btn:hover:not([disabled]) span{
+    
+    visibility: visible;
+}
+
+.card-remove-btn{
+    background-color: transparent;
+    color: brown;
+    border: none;
+    margin-bottom: 10px;
+    /* justify-content: center; */
+}
+
+.card-config-btn:hover:not([disabled]), .card-remove-btn:hover{
+    
+    transition: all .1s ease;
+    transform: scale( 1.15 ); /*translateY( -5px )*/
+    /* transform-origin: center; */
+    /* box-shadow: rgb(150, 150, 150) 0px 0px 20px 5px; */
+    
+    cursor: pointer;
+}
+
+
+
+/*BOTONES DE LOS PUNTOS VITALES (los que te dicen qué números hacen daño y cuales curan)*/
+.vital-points{
+    height: 50%;
+    width: 100%;
+    
+    /* background-color: rgb(255, 238, 205); */
+}
+
+.weak-points, .safe-points{
+    
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.point{
+    z-index: 50;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+
+    width: 80px;
+    height: 60px;
+
+    margin-bottom: 10px;
+
+    /* El text align no centra en los dos ejes, para necesitamos lo de abajo */
+    /* text-align: center; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+
+    /*Los números no podrán ser seleccionados*/
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.weak-points .point{
+    border: 5px solid rgb(126, 0, 0);
+}
+
+.safe-points .point{
+    border: 5px solid rgb(0, 126, 27);
+}
+
+
+/*BOTONES DE CONTROL DE VIDA*/
+.health-controller{
+    margin-top: 150%;
+    
+    height: 20%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.health-button{
+    margin-bottom: 40%;
+    /* border: 2px solid; */
+    border: none;
+    background-color: transparent;
+    
+}
+
+
+.heal:hover{
+    /* border: 2px solid rgb(0, 168, 0); */
+    color: rgb(11, 184, 34);
+    transform: scale(1.3);
+}
+
+.damage:hover{
+    /* border: 2px solid rgb(168, 0, 0); */
+    color: rgb(184, 11, 11);
+    transform: scale(1.3);
+}
+
+.heal:active, .damage:active{
+    
+    transform: scale(1);
+}
+
+@media only screen and (max-width: 375px) {
+
+    .point{
+        width: 60px;
+        height: 40px;
+        font-size: 30px;
+    }
+
+    .health-button{
+        
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,142 @@
+
+/*MODAL*/
+.modal{
+    
+    z-index: 999;
+    
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    
+    box-sizing: border-box;
+    
+    background-color: #0000005e;
+
+    display: flex;
+    align-items: center;
+}
+
+.modal-container{
+
+    background-color: black;
+    border-radius: 15px;
+    box-shadow: rgb(105, 105, 105) 2px 2px 25px 7px;
+    border: 1px solid rgb(138, 138, 138);
+    
+    width: 50%;
+    height: 70%;
+    
+    min-width: 380px;
+    max-width: 570px;
+
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    /* top: 10%; */
+
+    color: white;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+
+    padding: 10px;
+
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-container{
+        transform: scale(0.9);
+    }
+}
+
+
+@media only screen and (max-width: 420px) {
+    .modal-container{
+        transform: scale(0.8);
+    }
+}
+
+.modal-header{
+
+    border: 1px solid rgb(138, 138, 138);
+    background-color: black;
+    border-radius: 10px;
+
+    width: 50%;
+    top: -4%;
+
+    padding: 10px;
+
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: absolute;
+
+}
+
+.modal-content{
+    
+    margin-top: 30px;
+    padding: 10px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    overflow: auto;
+}
+
+.modal-content h3{
+
+    width: fit-content;
+    border-bottom: 3px solid white;
+
+    margin-bottom: 10px;
+
+}
+
+.modal-content hr {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-color: gray;
+}
+
+#option-health button{
+
+    border: none;
+    background-color: white;
+    margin-top: 5px;
+}
+
+#config-footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#config-footer button{
+    border: 1px solid rgb(138, 138, 138);
+    background-color: black;
+    color:white;
+    border-radius: 5px;
+    padding: 10px;
+
+    cursor: pointer;
+}
+
+#config-footer button:hover{
+    background-color: rgb(49, 49, 49);
+}
+
+#config-footer button:active{
+    box-shadow: rgb(105, 105, 105) 2px 2px 25px 7px;
+}

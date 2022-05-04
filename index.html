@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxing Darts</title>
+
+    <!-- EXTERNAL SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- STYLES -->
+    <link rel="icon" href="./images/icon.jpg">
+    <link rel="stylesheet" href="./styles/general.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/hpbar.css">
+    <link rel="stylesheet" href="./styles/character.css">
+    <link rel="stylesheet" href="./styles/card.css">
+    <link rel="stylesheet" href="./styles/formulary.css">
+    <link rel="stylesheet" href="./styles/add.css">
+    <link rel="stylesheet" href="./styles/modals.css">
+    <link rel="stylesheet" href="./styles/dartboard.css">
+    <link rel="stylesheet" href="./styles/toast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <script src="./clases/HPBar.js"></script>
+    <script src="./clases/Card.js"></script>
+    <script src="./clases/Formulary.js"></script>
+    <script src="./clases/DartBoard.js"></script>
+    <script src="./src/main.js"></script>
+    <script src="./src/modes.js"></script>
+    <script src="./src/initializers.js"></script>
+
+    <!-- TUTORIAL CONTAINER -->
+    <div id="tutorial-modal" class="modal" style="display: none;">
+        <div id="tutorial-container" class="modal-container">
+            <div id="config-header" class="modal-header">
+                <h2>CÓMO JUGAR</h2>
+            </div>
+            <div id="tutorial-content" class="modal-content">
+                <h3>Antes de empezar</h3>
+                <p>
+                    Para jugar a este juego necesitarás una diana y un mínimo de 2 jugadores (no hay máximo de jugadores).
+                </p>
+
+                <hr>
+
+                <h3>Cómo configurar la partida</h3>
+                <p>
+                    En primer lugar podemos observar que hay 3 botones a la derecha (Play, Configuración de jugadores y Añadir jugadores).
+                    Al iniciar la aplicación estaremos en modo Configuración de jugadores por lo que aparece en gris.
+                    En este modo tenemos unas cartas que representan a cada jugador.
+                    Para poder crear un jugador debemos darle al + que aparece sobre el fondo rojo y para añadir más cartas de jugadores
+                    debemos darle al + que hay debajo del botón de Configuración de jugadores.
+                </p>
+                <p>
+                    Al pulsar el + para crear un jugador se abrirá un formulario para escribir el nombre, elegir color del fondo de la carta y un personaje;
+                    y así con todos los jugadores. Cada carta tiene un botón para eliminarla (-), la papelera borra al jugador pero no
+                    la carta, el botón del lápiz sirve para editar el jugador y el "check" es el botón para confirmar el jugador.
+                </p>
+                <p>
+                    Una vez tenemos al menos dos jugadores confirmados podemos darle al botón de play para jugar. Podemos volver
+                    a darle para reiniciar la partida (el icono nos lo mostrará).
+                </p>
+                <p>
+                    Cabe destacar que en el engranaje tenemos las opciones, donde podemos configurar la vida por defecto de los jugadores.
+                </p>
+
+                <hr>
+
+                <h3>Cómo jugar</h3>
+                <p>
+                    El turno del jugador nos lo muestra un mensaje arriba y una sombra dorada alrededor de su carta. Podemos 
+                    observar que este jugador tiene un rectángulo verde con un número y el resto de jugadores tres recuadros rojos.
+                    Estos números cambian cada turno y representan los puntos de la diana. El jugador deberá lanzar el dardo
+                    y si cae en algún número que coincida con algún número de sus rivales, estos recibirán daño (por ejemplo, si el
+                    jugador acierta en el 20, los jugadores que tengan un 20 recibirán daño). El recuadro verde es lo contrario, te curará si
+                    aciertas a este número. Aparece sobre el jugador que le toque lanzar, por lo que nunca podrá hacerse daño así mismo.
+                </p>
+                <p>
+                    Para realizar el daño, solo basta con pulsar el número acertado. También puedes usar los botones del corazón y la bomba
+                    de abajo para curar y hacer daño, pero es más recomendable usar los recuadros ya que si pulsas un número que tienen varios jugadores harás
+                    daño a todos ellos. Utiliza los botones de abajo solo en caso de equivocación, reajuste de la vida o si se cumple la regla número 3.
+                </p>
+                <p>
+                    Hay un último botón de hacer daño que es el logo de la aplicación. Si el jugador hace una diana, hará daño al resto de jugadores
+                    siguiendo la regla número 5.
+                </p>
+
+                <hr>
+
+                <h3>Reglas</h3>
+                <ol>
+                    <li>Cada jugador tiene 3 lanzamientos.</li>
+                    <li>Si el dardo cae al suelo, se repetirá el lanzamiento</li>
+                    <li>Si el dardo se clava en la zona exterior (sin puntuación) el jugador recibirá 1 punto de daño como penalización.</li>
+                    <li>Si el dardo cae en las casillas de doble o triple, hará el doble o el triple de daño.</li>
+                    <li>La diana hace 1 de daño (la franja exterior) o 2 de daño (el centro) a todos los jugadores excepto al lanzador. Pulsa
+                    el logo de la aplicación para realizar este daño.
+                    </li>
+                    <li>A veces un jugador tendrá 2 números iguales (o 3 con una probabilidad muy baja). Esto no es un error,
+                    el jugador recibirá esa cantidad de daño si se acierta en este número.</li>
+                    <li>Gana el último jugador en pie.</li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIG CONTAINER -->
+    <div id="config-modal" class="modal" style="display: none;">
+        <div id="config-container" class="modal-container">
+            <div id="config-header" class="modal-header">
+                <h2>OPCIONES</h2>
+            </div>
+            <div id="config-content" class="modal-content">
+                <div id="option-health">
+                    <h3>Vida de los jugadores por defecto</h3>
+                    <div id="hp-example">
+                        <div class="hptable-container"></div>
+                    </div>
+                    <button id="minus-defh" class="fa fa-minus"></button>
+                    <button id="plus-defh" class="fa fa-plus"></button>
+                    <!-- <hr> -->
+                </div>
+            </div>
+            <div id="config-footer">
+                <button id="accept">Guardar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- HEADER -->
+    <div id="header">
+        <div id="logo">
+            <div id="img-container"><img src="./images/icon.jpg" alt="Logo Diana" onclick="dartboard()"></div>
+            <h1>Boxing Darts!</h1>
+        </div>
+
+        <div class="game-info-container" style="display: none;">
+            <div class="game-info"> Añade jugadores </div>
+        </div>
+        
+        <div class="game-info-container" >
+            <div class="game-info">
+                <div> Ronda <span id="round"></span></div>
+                <div> Turno de <span id="player-turn"></span></div>
+            </div>
+            <button id="next" onclick="nextTurn()" onfocus="deleteFocus(this)">Pasar turno</button>
+        </div>
+
+        <button id="config-btn" title="Configuración" onfocus="deleteFocus(this)">
+            <i id="config-icon" class="fa fa-cog fa-3x"></i>
+        </button>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div id="main-container">
+        
+        <!-- DIV OF THE GAME -->
+        <div id="game-container">
+            
+            <!-- DIV OF THE CARD TEMPLATE -->
+            <div class="card-container" style="display:none;">
+                
+                <!-- ADD card-content[0] -->
+                <div class="card-content">
+
+                    <div class="add-container">
+
+                        <button class="fa fa-plus fa-4x">
+                            
+                            <span>Añade un jugador!</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FORMULARY card-content[1]-->
+                <div class="card-content" style="display: none;">
+                    <div class="formulary">
+                        <div class="form-header">
+                            <p>Editar jugador</p>
+                        </div>
+                        <div class="form-body">
+                            <!--Nombre, color, imagen-->
+                            <div class="form-obj">
+                                <span>Nombre</span>
+                                <input class="set-player-name" type="text" placeholder="Jugador" maxlength="11" size="15">
+                            </div>
+                            <div class="form-obj">
+                                <span>Color del fondo</span>
+                                <select name="colors" class="colors">
+                                    <!--BG DE CADA COLOR-->
+                                    <!-- <option value="black" selected disabled hidden size="25">Seleccionar</option> -->
+                                    <option style="background: black; color: black;" selected value="black">Negro</option>
+                                    <option style="background: rgb(54, 54, 247); color: rgb(54, 54, 247)" value="blue">Azul</option>
+                                    <option style="background: rgb(216, 36, 36); color: rgb(216, 36, 36)" value="red">Rojo</option>
+                                    <option style="background: rgb(37, 173, 37); color: rgb(37, 173, 37)" value="green">Verde</option>
+                                    <option style="background: rgb(189, 189, 36); color: rgb(189, 189, 36)" value="yellow">Amarillo</option>
+                                    <option style="background: rgb(111, 23, 119); color: rgb(111, 23, 119)" value="purple">Morado</option>
+                                </select>
+                            </div>
+                            <div class="form-obj">
+                                <span>Luchador</span>
+                                <div class="character-selector-container">
+                                    <table class="character-selector">
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/1.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/2.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/3.png');"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/4.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/5.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/6.png');"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/7.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/8.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/9.png');"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/10.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/11.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/12.png');"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/13.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/14.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/15.png');"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url('./images/fighter-icons/16.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/17.png');"></td>
+                                            <td style="background-image: url('./images/fighter-icons/random.png');"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHARACTER card-content[2]-->
+                <div class="card-content" style="display: none;">
+
+                    <div class="character">
+                        <h1 class="player-name"></h1>
+                        <img src="./images/fighters/1.gif" alt="Imagen Jugador">
+                        <div class="death final-screen" style="display: none;">
+                            <h2>Has muerto...</h2>
+                        </div>
+                        <div class="win final-screen" style="display: none;">
+                            <h2>¡Has ganado!</h2>
+                        </div>
+                    </div>
+                    <div class="hpbar-container">
+                        <div class="hptable-container"></table></div>
+                    </div>
+                </div>
+                
+                <!-- CONTROL PANEL -->
+                <div class="control-panel">
+                    <button class="card-remove-btn" title="Eliminar carta" onclick = removeCard(this)>
+                        <i class="fa fa-minus fa-2x"></i>
+                    </button>
+                    <div class="card-config">
+                        <button class="card-config-btn delete-btn" disabled>
+                            <i class="fa fa-trash fa-2x">
+                                <span>Borrar</span>
+                            </i>
+                        </button>
+                        <button class="card-config-btn edit-btn" disabled>
+                            <i class="fa fa-edit fa-2x">
+                                <span>Editar</span>
+                            </i>
+                        </button>
+                        <button class="card-config-btn confirm-btn" disabled>
+                            <i class="fa fa-check fa-2x">
+                                <span>Confirmar</span>
+                            </i>
+                        </button>
+                    </div>
+
+                    <div class="vital-points" style="display: none;">
+
+                        <div class="weak-points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                        <div class="safe-points" style="display: none;">
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="health-controller" >
+                        <button class="health-button heal" onfocus="deleteFocus(this)">
+                            <i class="fa fa-heart fa-2x"></i>
+                        </button>
+                        <button class="health-button damage" onfocus="deleteFocus(this)">
+                            <i class="fa fa-bomb fa-2x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!-- END OF GAME CONTAINER -->
+
+        <!--------------------------------------------->
+            
+        <!-- DIV OF SETTINGS -->
+        <div id="settings-container">
+        
+            <button id="play-btn" class="custom-btn" onfocus="deleteFocus(this)">
+                <i id="play-icon" class="fa fa-play">
+                    <span class="custom-title">Iniciar partida</span>
+                </i>
+            </button>
+
+            <button id="refresh-btn" class="custom-btn" onfocus="deleteFocus(this)">
+                <i id="play-icon" class="fa fa-refresh">
+                    <span class="custom-title">Reiniciar partida</span>
+                </i>
+            </button>
+
+            <button id="players-btn" class="custom-btn">
+                <i id="players-icon" class="fa fa-users">
+                    <span class="custom-title">Configurar jugadores</span>
+                </i>
+            </button>
+            
+            <button id="add-player-btn" class="custom-btn" onfocus="deleteFocus(this)">
+                <i id="add-icon" class="fa fa-plus">
+                    <span class="custom-title">Añadir nuevo jugador</span>
+                </i>
+            </button>
+
+            <button id="show-board-btn" class="custom-btn" onfocus="deleteFocus(this)">
+                <i id="show-board-icon" class="fa fa-bullseye">
+                    <span class="custom-title">Mostrar esquema de disparo</span>
+                </i>
+            </button>
+        </div>
+        
+        <button id="tutorial-btn" class="custom-btn" onfocus="deleteFocus(this)">
+            <span>Cómo jugar</span>?
+        </button>
+
+    </div> <!-- END OF MAIN CONTAINER-->
+
+    <!-- Board preview modal -->
+    <div class="toast" id="board-toast"  onmouseenter="stopTimeout()" onmouseleave="closeToastDelay(this)">
+
+        <div class="board" >
+            <div class="sections-container">
+                <div class="section section-20"><span>20</span></div>
+                <div class="section section-1"><span>1</span></div>
+                <div class="section section-18"><span>18</span></div>
+                <div class="section section-4"><span>4</span></div>
+                <div class="section section-13"><span>13</span></div>
+                <div class="section section-6"><span>6</span></div>
+                <div class="section section-10"><span>10</span></div>
+                <div class="section section-15"><span>15</span></div>
+                <div class="section section-2"><span>2</span></div>
+                <div class="section section-17"><span>17</span></div>
+                <div class="section section-3"><span>3</span></div>
+                <div class="section section-19"><span>19</span></div>
+                <div class="section section-7"><span>7</span></div>
+                <div class="section section-16"><span>16</span></div>
+                <div class="section section-8"><span>8</span></div>
+                <div class="section section-11"><span>11</span></div>
+                <div class="section section-14"><span>14</span></div>
+                <div class="section section-9"><span>9</span></div>
+                <div class="section section-12"><span>12</span></div>
+                <div class="section section-5"><span>5</span></div>
+            </div>
+
+            <div class="triples"></div>
+            <div class="doubles"></div>
+            <div class="center"></div>
+
+            <div class="border-container">
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+            </div>
+            
+        </div>
+
+        <button class="toast-close-btn" onclick="forceCloseToast(this.parentNode)" title="Ocultar esquema">
+            &times;
+        </button>
+    </div>
+
+</body>
+</html>

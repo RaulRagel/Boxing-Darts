@@ -1,0 +1,49 @@
+
+.toast{
+    position: fixed;
+    left: -490px;
+    /* left: 10px; */
+    bottom: 10px;
+
+    /* border: 2px solid rgb(0, 80, 107); */
+
+    width: fit-content;
+    height: fit-content;
+
+    
+    transition: all .8s ease;
+
+    z-index: 800;
+}
+
+.toast-text{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.toast-close-btn{
+    background-color: transparent;
+    color: red;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 50%;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.toast-close-btn:hover{
+    color: rgb(189, 189, 189);
+    cursor: pointer;
+}
+
+.toast-close-btn:active{
+
+    transform: scale(0.9);
+}

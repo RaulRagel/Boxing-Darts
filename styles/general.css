@@ -1,0 +1,227 @@
+
+:root {
+	--bg: #fffcef;
+
+    --black: rgb(0,0,0);
+    --gray: rgb(212, 212, 212);
+
+    --red: rgb(136, 0, 0);
+    --lightred: #fbdcdc;
+
+    --blue: rgb(2, 143, 161);
+    --lightblue: #c3fafc;
+}
+
+/* var(--bg); */
+* {
+    margin: 0;
+}
+html,
+body{
+
+    height: 100%;
+
+    /* background-color: var(--bg); */
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-image: url("./../images/bgs/fondoST2.jpg");
+    /* background-image: url("./../images/bgs/fondoDojo.jpg"); */
+
+    /* margin: 0;
+    padding: 0; */
+
+    overflow: auto; /*esto hace que el scroll esté dentro del body*/
+}
+
+.hide{
+    display: none;
+}
+
+/*HEADER*/
+#header{
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
+    background-color: black;
+    color: white;
+    box-shadow: rgb(105, 105, 105) 2px 2px 25px 7px;
+    border-bottom: 1px solid rgb(138, 138, 138);
+    
+    padding: 10px;
+    
+    height: 90px;
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    
+}
+
+
+
+#logo{
+    display: flex;
+}
+
+#img-container{
+    height: 100%;
+    width: 100px;
+    box-sizing: border-box;
+}
+
+#img-container img{
+    max-width: 100%;
+    /* max-height: 100%; */ /*Con esto la imagen no se sale del header*/
+
+    cursor: pointer;
+}
+
+
+.game-info-container{ /*contenedor*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+}
+
+.game-info{
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    padding: 3px;
+    /* align-items: center; */
+
+    /* text-decoration: underline double rgb(255, 255, 255); */
+}
+
+.game-info span{
+    font-weight: bolder;
+}
+
+#next{
+    width: fit-content;
+
+    border: none;
+    border-radius: 0px;
+    background-color: white;
+
+    font-weight: bold;
+    padding: 20px;
+}
+
+#next:hover{
+    background-color: rgb(224, 224, 224);
+}
+
+#next:active{
+    background-color: rgb(207, 207, 207);
+}
+
+
+@media only screen and (max-width: 630px) {
+    #header h1{
+        display: none;
+    }
+
+    .game-info-container{
+        flex-direction: column;
+        width: 50%;
+        justify-content: center;
+    }
+
+    #next{
+        width: 100%;
+        padding: 5px;
+    }
+}
+
+/*MAIN*/
+#main-container{
+    display: flex;
+    padding: 15px; /*Sin el padding los botones mueven la pantalla*/
+}
+
+#game-container{
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* justify-content: space-around; */
+    /* align-items: center; */
+
+}
+
+@media only screen and (max-width: 445px) {
+    #main-container{
+        padding: 10px;
+    }
+    #game-container{
+        justify-content: flex-start; /*Nos aseguramos de que los personajes no estorben a los botones*/
+    }
+}
+
+#settings-container{
+    position: absolute;
+
+    right: 0;
+
+    min-width: 35px;
+
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* float: right; */
+    height: fit-content;
+}
+
+
+
+/*SCROLLBAR*/
+
+/* width */
+::-webkit-scrollbar {
+    
+    width: 5px;
+    height: 10px;
+}
+
+/* Scrollbar color */
+::-webkit-scrollbar-thumb {
+    
+    background: rgb(0, 0, 0);
+}
+
+/* Scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(78, 78, 78);
+}
+
+/*Fondo del scrollbar*/
+/* ::-webkit-scrollbar-track { */
+    /* background: rgb(126, 92, 0); */
+/* } */
+
+/*Scrollbar corner*/
+/* ::-webkit-scrollbar-corner{
+    background: rgb(163, 163, 163);
+} */
+
+/*Resize corner*/
+/* ::-webkit-resizer{
+    background: rgb(255, 255, 255);
+} */
